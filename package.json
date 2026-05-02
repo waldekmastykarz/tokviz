@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "express": "^4.21.2",
-    "open": "^10.1.0",
+    "open": "^11.0.0",
     "protobufjs": "^7.4.0",
     "ws": "^8.18.0"
   },
