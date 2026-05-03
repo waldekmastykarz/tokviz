@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/waldekmastykarz/tokviz/compare/v0.1.0...v0.2.0) (2026-05-03)
+
+### Features
+
+- Demo mode (`--demo` flag / `npm run demo`) with synthetic data across 5 models for exploring the dashboard without real OTLP data
+- SVG favicon and logo in the dashboard header
+
+### Improvements
+
+- Wider request detail dialog for better readability of long prompts
+
 ## 0.1.0 (2026-05-02)
 
 ### Features
