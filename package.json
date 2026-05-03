@@ -1,6 +1,6 @@
 {
   "name": "tokviz",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Real-time, local-only web dashboard that visualizes LLM token usage and costs from standard OpenTelemetry data",
   "type": "module",
   "bin": {
@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "dev": "concurrently -n server,client \"tsx watch src/server/index.ts --no-open\" \"vite\"",
+    "demo": "concurrently -n server,client \"tsx watch src/server/index.ts --no-open --demo\" \"vite\"",
     "dev:server": "tsx watch src/server/index.ts --no-open",
     "dev:client": "vite",
     "build": "npm run build:client && npm run build:server",
@@ -33,7 +34,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/waldekmastykarz/tokviz.git"
+    "url": "git+https://github.com/waldekmastykarz/tokviz.git"
   },
   "engines": {
     "node": ">=18"
@@ -53,7 +54,7 @@
     "concurrently": "^9.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recharts": "^2.15.0",
+    "recharts": "^3.8.1",
     "tsup": "^8.4.0",
     "tsx": "^4.19.0",
     "typescript": "^6.0.3",
