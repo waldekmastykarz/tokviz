@@ -8,6 +8,7 @@ import { existsSync } from 'fs';
 import open from 'open';
 import { handleTraces } from './otlp.js';
 import { store } from './store.js';
+import { generateInitialSpans, generateSpan } from './demo.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,11 +17,13 @@ const { values } = parseArgs({
   options: {
     port: { type: 'string', default: '4318' },
     'no-open': { type: 'boolean', default: false },
+    demo: { type: 'boolean', default: false },
   },
   strict: false,
 });
 
 const port = parseInt(values.port || '4318', 10);
+const isDemo = values.demo ?? false;
 const app = express();
 const server = createServer(app);
 const wss = new WebSocketServer({ server, path: '/ws' });
@@ -87,6 +90,26 @@ server.listen(port, () => {
   console.log(`\n  tokviz running at http://localhost:${port}\n`);
   console.log(`  OTLP endpoint: http://localhost:${port}/v1/traces`);
   console.log(`  Set OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:${port}\n`);
+
+  if (isDemo) {
+    console.log('  Demo mode: generating synthetic data\n');
+    const initialSpans = generateInitialSpans(25);
+    for (const span of initialSpans) {
+      store.add(span);
+    }
+
+    // Add new spans every 3-8 seconds
+    function scheduleNext() {
+      const delay = 3000 + Math.random() * 5000;
+      setTimeout(() => {
+        const span = generateSpan();
+        store.add(span);
+        broadcast({ type: 'spans', data: [span] });
+        scheduleNext();
+      }, delay);
+    }
+    scheduleNext();
+  }
 
   if (!values['no-open']) {
     open(`http://localhost:${port}`);

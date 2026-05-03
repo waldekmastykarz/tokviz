@@ -14,7 +14,10 @@ export function App() {
   return (
     <div className="app">
       <div className="header">
-        <h1>tokviz</h1>
+        <h1>
+          <img className="logo" src="/favicon.svg" alt="" />
+          tokviz
+        </h1>
         <div className="connection-status">
           <div className={`status-dot ${connected ? 'connected' : ''}`} />
           {connected ? 'Connected' : 'Disconnected'}

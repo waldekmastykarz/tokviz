@@ -59,6 +59,14 @@ body {
 .header h1 {
   font-size: 24px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
 }
 
 .connection-status {
@@ -225,7 +233,7 @@ tr.clickable:hover {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 24px;
-  max-width: 600px;
+  max-width: 900px;
   width: 90%;
   max-height: 80vh;
   overflow-y: auto;

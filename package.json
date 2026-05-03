@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "dev": "concurrently -n server,client \"tsx watch src/server/index.ts --no-open\" \"vite\"",
+    "demo": "concurrently -n server,client \"tsx watch src/server/index.ts --no-open --demo\" \"vite\"",
     "dev:server": "tsx watch src/server/index.ts --no-open",
     "dev:client": "vite",
     "build": "npm run build:client && npm run build:server",
