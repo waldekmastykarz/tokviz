@@ -34,7 +34,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/waldekmastykarz/tokviz.git"
+    "url": "git+https://github.com/waldekmastykarz/tokviz.git"
   },
   "engines": {
     "node": ">=18"
