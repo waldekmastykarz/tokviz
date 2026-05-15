@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0](https://github.com/waldekmastykarz/tokviz/compare/v0.2.1...v0.3.0) (2026-05-15)
+
+### Features
+
+- Cumulative/per-request toggle on the Overview charts — switch between seeing individual data points per time bucket and a running total
+
 ## [0.2.0](https://github.com/waldekmastykarz/tokviz/compare/v0.1.0...v0.2.0) (2026-05-03)
 
 ### Features
