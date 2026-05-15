@@ -40,7 +40,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "express": "^4.21.2",
+    "express": "^5.2.1",
     "open": "^11.0.0",
     "protobufjs": "^8.0.3",
     "ws": "^8.18.0"
