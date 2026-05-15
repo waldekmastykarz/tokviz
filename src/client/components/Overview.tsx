@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -52,6 +52,8 @@ function chooseBucketSize(spans: GenAISpan[]): number {
 }
 
 export function Overview({ spans }: Props) {
+  const [cumulative, setCumulative] = useState(false);
+
   const timeData = useMemo(() => {
     const bucketSize = chooseBucketSize(spans);
     const buckets = new Map<number, TimePoint>();
@@ -74,6 +76,29 @@ export function Overview({ spans }: Props) {
 
     return Array.from(buckets.values()).sort((a, b) => a.time - b.time);
   }, [spans]);
+
+  const chartData = useMemo(() => {
+    if (!cumulative) return timeData;
+
+    let inputSum = 0;
+    let outputSum = 0;
+    let costSum = 0;
+    let requestSum = 0;
+
+    return timeData.map((point) => {
+      inputSum += point.inputTokens;
+      outputSum += point.outputTokens;
+      costSum += point.cost;
+      requestSum += point.requests;
+      return {
+        time: point.time,
+        inputTokens: inputSum,
+        outputTokens: outputSum,
+        cost: costSum,
+        requests: requestSum,
+      };
+    });
+  }, [timeData, cumulative]);
 
   const totals = useMemo(() => {
     const models = new Set<string>();
@@ -112,10 +137,22 @@ export function Overview({ spans }: Props) {
         </div>
       </div>
 
+      <div className="chart-controls">
+        <label className="toggle">
+          <span className="toggle-label">Cumulative</span>
+          <input
+            type="checkbox"
+            checked={cumulative}
+            onChange={() => setCumulative((v) => !v)}
+          />
+          <span className="toggle-track" />
+        </label>
+      </div>
+
       <div className="chart-container">
         <div className="chart-title">Tokens over time</div>
         <ResponsiveContainer width="100%" height={280}>
-          <LineChart data={timeData}>
+          <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
             <XAxis
               dataKey="time"
@@ -156,7 +193,7 @@ export function Overview({ spans }: Props) {
         <div className="chart-container">
           <div className="chart-title">Cost over time</div>
           <ResponsiveContainer width="100%" height={280}>
-            <LineChart data={timeData}>
+            <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis
                 dataKey="time"
