@@ -1,6 +1,6 @@
 {
   "name": "tokviz",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Real-time, local-only web dashboard that visualizes LLM token usage and costs from standard OpenTelemetry data",
   "type": "module",
   "bin": {
