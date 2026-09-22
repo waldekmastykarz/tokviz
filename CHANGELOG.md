@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.8](https://github.com/waldekmastykarz/tokviz/compare/v0.3.7...v0.3.8) (2026-09-22)
+
+### Maintenance
+
+- Refreshed runtime and development dependencies to keep the dashboard stack current
+
 ## [0.3.7](https://github.com/waldekmastykarz/tokviz/compare/v0.3.6...v0.3.7) (2026-09-08)
 
 ### Maintenance
