@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.11](https://github.com/waldekmastykarz/tokviz/compare/v0.3.10...v0.3.11) (2026-10-20)
+
+No user-facing changes in this release.
+
 ## [0.3.10](https://github.com/waldekmastykarz/tokviz/compare/v0.3.9...v0.3.10) (2026-10-06)
 
 ### Maintenance
